@@ -1,0 +1,92 @@
+import java.io.*;
+import java.util.* ;
+
+public class Solution {
+    public static void setZeros(int matrix[][]) {
+        // Write your code here..
+        List<List<Integer>> ans = new ArrayList<>();
+        // List<Integer> list=new ArrayList<>();
+        int N=matrix.length;
+        int M=matrix[0].length;
+        for(int i=0; i<N; i++){
+            List<Integer> list=new ArrayList<>();
+            for(int j=0; j<M; j++){
+                if(matrix[i][j]==0){
+                    list.add(i);
+                    list.add(j);
+                }
+                ans.add(list);
+                list.clear();
+            }
+        }
+
+        for(List<Integer> list1: ans){
+            for(int item:list1){
+                System.out.print(item+" ");
+            }
+            System.out.println();
+        }
+
+        int arr[]=new int[2];
+
+        for(List<Integer> list1: ans){
+            int i=0;
+            for(int item:list1){
+                arr[i]=item;
+                i++;
+            }
+            // matrix[arr[0]]=0;
+            for(int row=0; row<N; row++){
+                matrix[row][arr[1]]=0;
+            }
+            for(int col=0; col<M; col++){
+                matrix[arr[0]][col]=0;
+            }
+        }
+        // return matrix;
+    }
+
+}
+
+
+did not work//
+
+..........................................................................................................................
+
+
+
+import java.io.*;
+import java.util.* ;
+
+public class Solution {
+    public static void setZeros(int matrix[][]) {
+        // Write your code here..
+       HashMap<String, Integer> hm = new HashMap<>();
+       int N=matrix.length;
+       int M=matrix[0].length;
+       for(int i=0; i<N; i++){
+           for(int j=0; j<M; j++){
+               if(matrix[i][j]==0){
+                   hm.put(j+":"+i,i);
+               }
+           }
+       }
+
+       for(String key:hm.keySet()){
+        int col = Integer.parseInt(key.substring(0, key.indexOf(":")));
+
+           for(int i=0; i<N; i++){
+               matrix[i][col]=0;
+           }
+           for(int j=0; j<M; j++){
+               matrix[hm.get(key)][j]=0;
+           }
+           
+       }
+    }
+
+}
+
+//partially worked for 36/40 test cases
+
+.....................................................................
