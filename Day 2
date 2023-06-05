@@ -1,1 +1,44 @@
+//I knew that we had to use arraylist, but initially i was blank
+
+import java.io.*;
+import java.util.* ;
+
+import java.util.ArrayList;
+
+public class Solution {
+	public static ArrayList<ArrayList<Long>> printPascal(int n) {
+                 // Write your code here.
+				 ArrayList<ArrayList<Long>> ans = new ArrayList<>();
+				 ArrayList<Long> list1 = new ArrayList<>();
+				 ArrayList<Long> list2 = new ArrayList<>();
+				 list1.add(1L);
+				 list2.add(1L);
+
+				 long num=0L;
+
+				 ans.add(list2);
+
+				 for(int i=0; i<n-1; i++){
+					 ArrayList<Long> list3 = new ArrayList<>();
+					 for(int j=0; j<=list1.size(); j++){
+						 if(j==0){
+							 long sum=list1.get(j)+num;
+							 list3.add(sum);
+						 }
+						 else if(j==list1.size()){
+							 long sum=list1.get(j-1)+num;
+							 list3.add(sum);
+						 }
+						 else{
+							 long sum=list1.get(j-1)+list1.get(j);
+							 list3.add(sum);
+						 }
+					 }
+					 ans.add(list3);
+					 list1.clear();
+					 list1.addAll(list3);
+				 }
+				 return ans;
+	}
+}
 
