@@ -1,1 +1,93 @@
+//Initially the approoach I used was
 
+public class Solution {
+    public static List<List<Integer>> getTreeTraversal(BinaryTreeNode<Integer> root) {
+        // Write your code here.
+		List<Integer> inorder = new ArrayList<>();
+        List<Integer> preorder = new ArrayList<>();
+        List<Integer> postorder = new ArrayList<>();
+        List<List<Integer>> ans = new ArrayList<>();
+        
+        preorder.add(root.data);
+        getTreeTraversal(root.left);
+        inorder.add(root.data);
+        getTreeTraversal(root.right);
+        postorder.add(root.data);
+        
+
+        ans.add(inorder);
+        ans.add(preorder);
+        ans.add(postorder);
+
+        return ans;
+
+    }
+}
+
+//but this didnt work, as usuall I always forget to put a base condition
+
+//but it still didnt work, so I put it on chatgpt to know my mistake
+
+//.....................................................................................................................
+In the provided code, there are a few issues that need to be addressed:
+
+Recursive calls:
+
+In the code, the recursive calls to getTreeTraversal are missing the assignment to a variable. You need to assign the result of the recursive calls to lists and concatenate them with the current traversal lists.
+Update the lines getTreeTraversal(root.left); and getTreeTraversal(root.right); to assign the results to lists and concatenate them with the current traversal lists.
+Traversal order:
+
+In-order traversal is typically performed as: left subtree, current node, right subtree.
+Pre-order traversal is typically performed as: current node, left subtree, right subtree.
+Post-order traversal is typically performed as: left subtree, right subtree, current node.
+You should update the order of operations when adding the nodes to the traversal lists accordingly.
+//...........................................................................................................................
+
+
+
+public class Solution {
+    public static List<List<Integer>> getTreeTraversal(BinaryTreeNode<Integer> root) {
+        // Write your code here.
+		List<Integer> inorder = new ArrayList<>();
+        List<Integer> preorder = new ArrayList<>();
+        List<Integer> postorder = new ArrayList<>();
+        List<List<Integer>> ans = new ArrayList<>();
+
+        if (root == null) {
+            ans.add(inorder);
+            ans.add(preorder);
+            ans.add(postorder);
+            return ans;
+        }
+
+        // In-order traversal: left subtree, current node, right subtree
+        List<Integer> leftInorder = getTreeTraversal(root.left).get(0);
+        List<Integer> rightInorder = getTreeTraversal(root.right).get(0);
+        inorder.addAll(leftInorder);
+        inorder.add(root.data);
+        inorder.addAll(rightInorder);
+
+        // Pre-order traversal: current node, left subtree, right subtree
+        List<Integer> leftPreorder = getTreeTraversal(root.left).get(1);
+        List<Integer> rightPreorder = getTreeTraversal(root.right).get(1);
+        preorder.add(root.data);
+        preorder.addAll(leftPreorder);
+        preorder.addAll(rightPreorder);
+
+        // Post-order traversal: left subtree, right subtree, current node
+        List<Integer> leftPostorder = getTreeTraversal(root.left).get(2);
+        List<Integer> rightPostorder = getTreeTraversal(root.right).get(2);
+        postorder.addAll(leftPostorder);
+        postorder.addAll(rightPostorder);
+        postorder.add(root.data);
+
+        ans.add(inorder);
+        ans.add(preorder);
+        ans.add(postorder);
+
+        return ans;
+
+    }
+}
+
+//this code ran for 50% testcases, in the rest it showed TLE
