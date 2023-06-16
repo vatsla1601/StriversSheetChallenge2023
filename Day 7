@@ -90,4 +90,58 @@ public class Solution {
     }
 }
 
+
 //this code ran for 50% testcases, in the rest it showed TLE
+
+
+//the code below ran perfectly
+
+public class Solution {
+  
+    public static List<List<Integer>> getTreeTraversal(BinaryTreeNode<Integer> root) {
+        List<List<Integer>> ans = new ArrayList<>();
+
+        List<Integer> inorder = new ArrayList<>();
+        List<Integer> preorder = new ArrayList<>();
+        List<Integer> postorder = new ArrayList<>();
+
+        getInOrderTraversal(root, inorder);
+        getPreOrderTraversal(root, preorder);
+        getPostOrderTraversal(root, postorder);
+
+        ans.add(inorder);
+        ans.add(preorder);
+        ans.add(postorder);
+
+        return ans;
+    }
+
+    public static void getInOrderTraversal(BinaryTreeNode<Integer> node, List<Integer> traversal) {
+        if (node == null)
+            return;
+
+        getInOrderTraversal(node.left, traversal);
+        traversal.add(node.data);
+        getInOrderTraversal(node.right, traversal);
+    }
+
+    public static void getPreOrderTraversal(BinaryTreeNode<Integer> node, List<Integer> traversal) {
+        if (node == null)
+            return;
+
+        traversal.add(node.data);
+        getPreOrderTraversal(node.left, traversal);
+        getPreOrderTraversal(node.right, traversal);
+    }
+
+    public static void getPostOrderTraversal(BinaryTreeNode<Integer> node, List<Integer> traversal) {
+        if (node == null)
+            return;
+
+        getPostOrderTraversal(node.left, traversal);
+        getPostOrderTraversal(node.right, traversal);
+        traversal.add(node.data);
+    }
+	
+}
+
