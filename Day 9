@@ -1,0 +1,19 @@
+//This was easy
+
+public class Solution 
+{
+    public static LinkedListNode<Integer> reverseLinkedList(LinkedListNode<Integer> head) 
+    {
+        // Write your code here!
+		LinkedListNode<Integer> prev=null;
+LinkedListNode<Integer> curr=head;
+
+while(curr!=null){
+LinkedListNode<Integer> temp=curr.next;
+curr.next=prev;
+prev=curr;
+curr=temp;
+}
+return prev;
+    }
+}
