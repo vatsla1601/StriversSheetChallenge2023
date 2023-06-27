@@ -1,0 +1,40 @@
+//Count subsets with sum k
+
+//Code - Recursion
+
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static int findWays(int num[], int tar) {
+        // Write your code here..
+        int n=num.length;
+        return recursion(n-1, tar, num);
+    }
+    public static int recursion(int ind, int target, int num[]){
+        if(target==0){
+            return 1;
+        }
+        if(target<0){
+            return 0;
+        }
+        if(ind==0){
+            if(num[ind]==target){
+                return 1;
+            }
+            else{
+                return 0;
+            }
+        }
+
+        int notpick=recursion(ind-1, target, num);
+        int pick=0;
+        if(num[ind]<=target){
+            pick=recursion(ind-1, target-num[ind], num);
+        }
+
+        return pick+notpick;
+    }
+}
+
+
+//But this is giving runtime error
