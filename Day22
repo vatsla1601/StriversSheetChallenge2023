@@ -1,1 +1,43 @@
+//this code for some reason didn't work, but I am still at it
 
+import java.util.* ;
+import java.io.*; 
+/****************************************************************
+
+    Following is the class structure of the LinkedListNode class:
+	
+	class LinkedListNode<T> {
+    	T data;
+    	LinkedListNode<T> next;
+
+    	public LinkedListNode(T data) {
+        	this.data = data;
+    	}
+	}
+
+*****************************************************************/
+
+public class Solution {
+
+	public static boolean isPalindrome(LinkedListNode<Integer> head) {
+		// Write your code here!
+		LinkedListNode<Integer> dummy=head;
+		LinkedListNode<Integer> copydummy=head;
+		boolean ans=true;
+		LinkedListNode<Integer> temp=head;
+		while(temp!=null){
+			LinkedListNode<Integer> dummy1=temp;
+			dummy.next=dummy1;
+			dummy=dummy.next;
+			temp=temp.next;
+		}
+		while(head!=null){
+			if(copydummy!=head){
+				ans=false;
+				break;
+			}
+			head=head.next;
+		}
+		return ans;
+	}
+}
