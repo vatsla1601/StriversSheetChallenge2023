@@ -61,3 +61,76 @@ public class Solution
     }
 }
 
+
+//finally it worked recursively, but it gives tle
+
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+public class Solution 
+{
+	public static ArrayList<Integer> nextPermutation(ArrayList<Integer> permutation) 
+    {
+        // Write your code here.
+
+        List<List<Integer>> ans = new ArrayList<>();
+        ArrayList<Integer> list = new ArrayList<>();
+        int count[] = new int[permutation.size()];
+		int copy[]=new int[permutation.size()];
+		for(int i=0; i<permutation.size(); i++){
+			copy[i]=permutation.get(i);
+		}
+		Arrays.sort(copy);
+        int ind1 = 0;
+
+        Arrays.fill(count, 0);
+        recursion(permutation, list, count, ans, copy);
+        // Collections.sort(ans, new LexicographicComparator()); 
+
+        for (int i = 0; i < ans.size(); i++) {
+            boolean foundMatch = true;
+            for (int j = 0; j < ans.get(i).size(); j++) {
+                if (!permutation.get(j).equals(ans.get(i).get(j))) {
+                    foundMatch = false;
+                    break;
+                }
+            }
+            if (foundMatch) {
+                ind1 = i;
+                break;
+            }
+        }
+
+        if (++ind1 >= ans.size()) {
+            return new ArrayList<>(ans.get(0));
+        } else {
+            return new ArrayList<>(ans.get(ind1));
+        }
+    }
+
+    public static void recursion(ArrayList<Integer> permutation, 
+	ArrayList<Integer> list, int[] count, List<List<Integer>> ans, int copy[]) {
+        if (list.size() == permutation.size()) {
+            ans.add(new ArrayList<>(list));
+            return;
+        }
+
+        for (int i = 0; i < count.length; i++) {
+            if (count[i] != 1) {
+                list.add(copy[i]);
+                count[i] = 1;
+                recursion(permutation, list, count, ans, copy);
+                list.remove(list.size() - 1);
+                count[i] = 0;
+            }
+        }
+    }
+}
+
+//so now its time to see strivers video for a better or optimal approach, because I ain't getting it
+
+
