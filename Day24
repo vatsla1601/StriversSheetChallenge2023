@@ -1,5 +1,7 @@
 //The challenge of this q is to do it in O(N) using 2 pointer
 
+//Knowing merge sort is important for optimisation
+
 //Count Inversions
 
 import java.util.* ;
