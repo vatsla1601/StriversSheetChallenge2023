@@ -1,3 +1,69 @@
 //I really don't feel like doing this question, but I'm just trying to push through my limits
 
-//Reverse LinkedList in k size
+//Reverse LinkedList in k pairs
+
+//The immediate below is simple plain code, but I noticed a twist in the q, it says that k is not fixed
+//acc to b[] values it keeps changing
+
+class ListNode {
+    int val;
+    ListNode next;
+
+    ListNode(int val) {
+        this.val = val;
+        this.next = null;
+    }
+}
+
+public class Main {
+    public static ListNode reverseInPairs(ListNode head, int k) {
+        ListNode current = head;
+        ListNode next = null;
+        ListNode prev = null;
+        int count = 0;
+
+        // Reverse the first k nodes of the linked list
+        while (count < k && current != null) {
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+            count++;
+        }
+
+        // Recursively reverse the remaining nodes
+        if (next != null) {
+            head.next = reverseInPairs(next, k);
+        }
+
+        // Return the new head of the reversed list
+        return prev;
+    }
+
+    public static void printLinkedList(ListNode head) {
+        ListNode current = head;
+        while (current != null) {
+            System.out.print(current.val + " ");
+            current = current.next;
+        }
+    }
+
+    public static void main(String[] args) {
+        ListNode head = new ListNode(1);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(3);
+        head.next.next.next = new ListNode(4);
+        head.next.next.next.next = new ListNode(5);
+
+        int k = 3;
+
+        System.out.println("Original Linked List: ");
+        printLinkedList(head);
+
+        ListNode reversedHead = reverseInPairs(head, k);
+
+        System.out.println("\nReversed Linked List in pairs of " + k + ": ");
+        printLinkedList(reversedHead);
+    }
+}
+
