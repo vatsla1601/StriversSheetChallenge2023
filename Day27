@@ -1,5 +1,42 @@
 //Max Consecutive number of 1's
 
+//I certainly took chatGPT's help in this
+//I usually find it difficult to retain the concept of sliding windows, so in the next days I will specifically do sliding window questions
+
+import java.util.ArrayList;
+
+public class Solution {
+    public static int longestSubSeg(ArrayList<Integer> arr, int n, int k) {
+        int maxLength = 0;  // Variable to store the length of the longest sequence
+        int zeroCount = 0;  // Counter for the number of zeroes in the current window
+        int start = 0;      // Start index of the current window
+
+        for (int end = 0; end < n; end++) {
+            // If the current element is 0, increment the zeroCount
+            if (arr.get(end) == 0) {
+                zeroCount++;
+            }
+
+            // If the number of zeroes exceeds 'k', move the start index of the window
+            // until the zeroCount is less than or equal to 'k'
+            while (zeroCount > k) {
+                if (arr.get(start) == 0) {
+                    zeroCount--;
+                }
+                start++;
+            }
+
+            // Update the maxLength if the current window length is greater
+            if (end - start + 1 > maxLength) {
+                maxLength = end - start + 1;
+            }
+        }
+
+        return maxLength;
+    }
+}
+
+
 //Find missing number
 
 //Brute
