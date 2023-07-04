@@ -27,3 +27,64 @@ public class Solution {
 }
 
 //Better
+
+import java.util.Arrays;
+public class Solution {
+    public static int missingNumber(int []a, int N) {
+        // Write your code here.
+    int ans=-1;
+       int arr[]=new int[N+1];
+       Arrays.fill(arr,0);
+
+       for(int i=0; i<a.length; i++){
+           arr[a[i]]=1;
+       }
+
+       for(int i=1; i<arr.length; i++){
+           if(arr[i]==0){
+               ans=i;
+               break;
+           }
+       }
+       return ans;
+    }
+}
+
+//Optimal
+//(Sum)
+
+import java.util.Arrays;
+public class Solution {
+    public static int missingNumber(int []a, int N) {
+        // Write your code here.
+        
+        int sum=0;
+        int total=(N*(N+1))/2;
+
+        for(int i=0; i<a.length; i++){
+            sum+=a[i];
+        }
+       return total-sum;
+    }
+}
+
+//(XOR)
+
+import java.util.Arrays;
+public class Solution {
+    public static int missingNumber(int []a, int N) {
+        // Write your code here.
+        
+        int xor1=N;
+        int xor2=0;
+
+        for(int i=0; i<N-1; i++){
+            xor1=xor1^(i+1);
+            // 5^0^1^2^3
+            xor2=xor2^a[i];
+            // 0^1^2^4^5
+        }
+
+       return xor1^xor2;
+    }
+}
