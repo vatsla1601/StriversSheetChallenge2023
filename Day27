@@ -1,1 +1,29 @@
 //Max Consecutive number of 1's
+
+//Find missing number
+
+//Brute
+
+public class Solution {
+    public static int missingNumber(int []a, int N) {
+        // Write your code here.
+        int ans=-1;
+        for(int i=1; i<=N; i++){
+            int flag=0;
+            for(int j=0; j<N-1; j++){
+                if(a[j]==i){
+                    flag=1;
+                    break;
+                }
+            }
+            if(flag==0){
+                ans=i;
+                break;
+            }
+        }
+
+        return ans;
+    }
+}
+
+//Better
