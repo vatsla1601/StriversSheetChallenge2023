@@ -36,6 +36,42 @@ public class Solution {
     }
 }
 
+Sure! Let's explain the problem and the code in simpler terms.
+
+// Problem: We are given a list of numbers, where each number is either 0 or 1. We need to find the longest sequence of continuous 1's that can be formed by changing at most 'k' 0's to 1's. We want to know the length of this longest sequence.
+
+// Explanation:
+
+// We start by looking at the first number in the list.
+// If the number is 0, we count it as a zero in our current window.
+// If the number is 1, we don't need to do anything special.
+// We continue moving through the list, looking at each number one by one.
+// Whenever we encounter a 0, we increase our count of zeros in the current window.
+// If the count of zeros in the current window becomes larger than 'k', it means we have reached the limit of the zeros we can change to ones.
+// In that case, we move our window's starting position forward (to the right) until the count of zeros in the window becomes less than or equal to 'k' again.
+// While moving the window's starting position, we decrease the count of zeros in the window accordingly.
+// After each step, we compare the length of the current window (from the starting position to the current position) with the maximum length we have seen so far.
+// We keep track of the maximum length seen so far and update it whenever we find a longer window.
+// Finally, we return the maximum length we have found.
+// Let's take an example to make it clearer:
+// Suppose we have the following list: [1, 1, 0, 1, 1, 0, 0, 1] and k = 1.
+
+// We start with an empty window and move through the list:
+
+// The first number is 1. We have 0 zeros in the window. The maximum length so far is 1.
+// The second number is 1. Still 0 zeros. The maximum length remains 1.
+// The third number is 0. We have 1 zero in the window now. Since the number of zeros (1) exceeds 'k' (which is 1), we move the window's starting position to the next number (position 2).
+// The window becomes [0, 1, 1]. The count of zeros in the window is now 0. The maximum length remains 1.
+// We continue moving through the list. The next number is 1. We still have 0 zeros. The maximum length remains 1.
+// The next number is 1. No change. The maximum length remains 1.
+// The next number is 0. We have 1 zero in the window. Again, we move the window's starting position to the next number (position 5).
+// The window becomes [1, 1, 0]. The count of zeros in the window is now 0. The maximum length remains 1.
+// We move forward. The next number is 0. We have 1 zero in the window. We move the window's starting position to the next number (position 6).
+// The window becomes [1, 0, 0]. The count of zeros in the window is now 1. The maximum length remains 1.
+// We move forward. The next number is 1. We still have 1 zero. The maximum length remains 1.
+// The final number is 1. We still have 1 zero. The maximum length remains 1.
+// In the end, the
+
 
 //Find missing number
 
