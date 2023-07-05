@@ -1,1 +1,121 @@
+//Intersection of 2 LinkedLists
+
+//Remember to check the nodes and not the values
+
+//Brute
+
+/****************************************************************
+
+ Following is the class structure of the Node class:
+
+ class Node {
+     public int data;
+     public Node next;
+
+     Node()
+     {
+         this.data = 0;
+         this.next = null;
+     }
+     Node(int data)
+     {
+         this.data = data;
+         this.next = null;
+     }
+     Node(int data, Node next)
+     {
+         this.data = data;
+         this.next = next;
+     }
+ }
+
+ *****************************************************************/
+
+public class Solution {
+    public static int findIntersection(Node firstHead, Node secondHead) {
+        //Write your code here
+         int ans = -1;
+        
+        while (firstHead != null) {
+            Node temp = secondHead;
+            
+            while (temp != null) {
+                if (firstHead == temp) {
+                    ans = firstHead.data;
+                    break;
+                }
+                temp = temp.next;
+            }
+            
+            if (ans != -1) {
+                break;
+            }
+            
+            firstHead = firstHead.next;
+        }
+        
+        return ans;
+    }
+}
+
+
+//Bettter
+
+//I am unable to figure out the mistake in this code
+
+import java.util.HashSet;
+
+import org.w3c.dom.Node;
+
+/****************************************************************
+
+ Following is the class structure of the Node class:
+
+ class Node {
+     public int data;
+     public Node next;
+
+     Node()
+     {
+         this.data = 0;
+         this.next = null;
+     }
+     Node(int data)
+     {
+         this.data = data;
+         this.next = null;
+     }
+     Node(int data, Node next)
+     {
+         this.data = data;
+         this.next = next;
+     }
+ }
+
+ *****************************************************************/
+
+import java.util.HashSet;
+
+public class Solution {
+    public static int findIntersection(Node firstHead, Node secondHead) {
+        int ans = -1;
+        
+        HashSet<Node> hs = new HashSet<>();
+
+        while (firstHead != null) {
+            hs.add(firstHead);
+            firstHead = firstHead.next;
+        }
+
+        while (secondHead != null) {
+            if (hs.contains(secondHead)) {
+                ans = secondHead.data;
+                break;
+            }
+            secondHead = secondHead.next;
+        }
+        
+        return ans;
+    }
+}
 
