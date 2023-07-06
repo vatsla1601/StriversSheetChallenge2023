@@ -1,0 +1,49 @@
+//Majority element-II
+
+//I often forget how extract the values in hashmap or interate through it
+
+//Note Syntax
+
+//get value
+//hm.put(arr.get(i), hm.get(arr.get(i)) + 1);
+//...............
+//iterate key of hashmap
+// for (Integer key : hm.keySet()) {
+//     if (hm.get(key) > limit) {
+//         ans.add(key);
+//     }
+// }
+
+
+import java.io.*;
+import java.util.* ;
+
+import java.util.ArrayList;
+
+public class Solution 
+{
+    public static ArrayList<Integer> majorityElementII(ArrayList<Integer> arr) 
+    {
+        // Write your code here.
+        int n = arr.size();
+        int limit = (int) Math.floor(n / 3);
+        ArrayList<Integer> ans = new ArrayList<>();
+        HashMap<Integer, Integer> hm = new HashMap<>();
+
+        for (int i = 0; i < arr.size(); i++) {
+            if (hm.containsKey(arr.get(i))) {
+                hm.put(arr.get(i), hm.get(arr.get(i)) + 1);
+            } else {
+                hm.put(arr.get(i), 1);
+            }
+        }
+
+        for (Integer key : hm.keySet()) {
+            if (hm.get(key) > limit) {
+                ans.add(key);
+            }
+        }
+
+        return ans;
+    }
+}
