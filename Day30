@@ -1,1 +1,29 @@
+//Pair Sum
+
+//Brute
+
+//the code I did was not printing the correct pairs in the right order
+
+import java.io.*;
+import java.util.* ;
+
+public class Solution{
+    public static List<int[]> pairSum(int[] arr, int s) {
+        // Write your code here.
+        List<int[]> list= new ArrayList<>();
+
+        for(int i=0; i<arr.length; i++){
+            for(int j=i+1; j<arr.length; j++){
+                if(arr[i]+arr[j]==s){
+                    int[] pair={arr[i], arr[j]};
+                    if(!list.contains(pair)){
+                        list.add(pair);
+                    }
+                }
+            }
+        }
+        return list;
+    }
+}
+
 
