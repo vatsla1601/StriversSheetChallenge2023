@@ -28,4 +28,31 @@ public class Solution{
 
 //Hayeeeyaaaaaaaaaaaaaaaaaaaaaaa!!! Solved it, just sort the array in the beginning
 
+import java.io.*;
+import java.util.*;
+
+public class Solution{
+    public static List<int[]> pairSum(int[] arr, int s) {
+        // Write your code here.
+        List<int[]> list= new ArrayList<>();
+        Arrays.sort(arr);
+
+        for(int i=0; i<arr.length; i++){
+            for(int j=i+1; j<arr.length; j++){
+                if(arr[i]+arr[j]==s){
+                    int[] pair={arr[i], arr[j]};
+                    list.add(pair);
+                }
+            }
+        }
+
+        return list;
+    }
+}
+
+//Better
+
+
+
+
 
