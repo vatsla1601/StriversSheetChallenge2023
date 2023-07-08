@@ -1,1 +1,35 @@
+//easy
+
+import java.util.*;
+import java.io.*;
+import java.util.ArrayList;
+
+public class Solution {
+
+    public static int[] missingAndRepeating(ArrayList<Integer> arr, int n) {
+        int sum1 = (n * (n + 1)) / 2;
+        int sum2 = 0, sum3 = 0, sum4 = 0;
+
+        HashSet<Integer> hs = new HashSet<>();
+
+        for (int i = 0; i < n; i++) {
+            hs.add(arr.get(i));
+            sum2 += i;
+            sum4+=arr.get(i);
+        }
+
+        Iterator<Integer> it = hs.iterator();
+        while (it.hasNext()) {
+            sum3 += it.next();
+        }
+
+
+        int missing = Math.abs(sum1 - sum3);
+        int repeat = Math.abs(sum4 - sum3);
+
+        int ans[] = {missing, repeat};
+
+        return ans;
+    }
+}
 
