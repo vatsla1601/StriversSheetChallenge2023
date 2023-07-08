@@ -1,1 +1,42 @@
+//Find Four Elements That Sums To A Given Value
+
+//To do this first do 3sum
+
+//When I was doing 3 sum, despite using set<ArrayList<Integer>> I was getting duplicates
+//Then on sorting the 1d arraylist and then putting in set removed the duplicates
+
+//Brute
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+
+	public static ArrayList<ArrayList<Integer>> findTriplets(int[] arr, int n, int K)  {
+
+	    
+		// Write your code here.
+		// ArrayList<Integer> list1 = new ArrayList<>();
+		ArrayList<ArrayList<Integer>> list3 = new ArrayList<>();
+		Set<ArrayList<Integer>> list2 = new HashSet<>();
+
+
+		for(int i=0; i<n-2; i++){
+			for(int j=i+1; j<n-1; j++){
+				for(int k=j+1; k<n; k++){
+					// ArrayList<Integer> list1 = new ArrayList<>();
+					if(arr[i]+arr[j]+arr[k]==K){
+						ArrayList<Integer> list1 = new ArrayList<>();
+						list1.add(arr[i]);
+						list1.add(arr[j]);
+						list1.add(arr[k]);
+						Collections.sort(list1); 
+						list2.add(list1);
+					}
+				}
+			}
+		}
+		list3.addAll(list2);
+		return list3;
+
+	}
+}
 
