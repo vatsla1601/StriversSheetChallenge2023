@@ -40,3 +40,100 @@ public class Solution {
 	}
 }
 
+//Better
+
+//I have no idea of how to handle this error: Exception in thread  main  java.lang.NullPointerException
+//at Solution.findTriplets(Solution.java:39)
+//at Runner.main(Runner.java:18)
+
+//ChatGPT says: The NullPointerException you encountered is likely due to an issue in the Runner class or 
+//the way you're calling the findTriplets method. From the stack trace you provided, it seems that the issue 
+//occurs at line 18 in the Runner.main method. To investigate further, please provide the code for the 
+//Runner class and the exact code you're using to call the findTriplets method. This will help me identify 
+//the cause of the NullPointerException and provide a solution.
+
+//Acc to me the code logic and syntax is right
+
+//TC: O(N^2 * logM), SC: O(M) + O(N)
+//M=Unique triplets. logM=insertion time taken in set
+
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+
+	public static ArrayList<ArrayList<Integer>> findTriplets(int[] arr, int n, int K)  {
+
+	    
+		// Write your code here.
+		HashMap<Integer, Integer> hm = new HashMap<>();
+
+		ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+
+		Set<ArrayList<Integer>> set = new HashSet<>();
+
+
+		Arrays.sort(arr);
+
+
+		for(int i=0; i<n; i++){
+			if(hm.containsKey(arr[i])){
+				hm.put(arr[i], hm.get(arr[i])+1);
+			}
+			else{
+				hm.put(arr[i],1);
+			}
+		}
+
+		for(int i=0; i<n-2; i++){
+			if(hm.containsKey(arr[i])){
+				if(hm.get(arr[i])==1){
+					hm.remove(arr[i]);
+				}
+				else{
+					hm.put(arr[i], hm.get(arr[i])-1);
+				}
+			}
+			for(int j=i+1; j<n-1; j++){
+				if(hm.containsKey(arr[j])){
+				if(hm.get(arr[j])==1){
+					hm.remove(arr[j]);
+				}
+				else{
+					hm.put(arr[j], hm.get(arr[j])-1);
+				}
+			}
+	
+					int find=-(arr[i] + arr[j]);
+
+					if(hm.containsKey(find)){
+					ArrayList<Integer> list1 = new ArrayList<>();
+
+					list1.add(arr[i]);
+					list1.add(arr[j]);
+					list1.add(find);
+
+					set.add(list1);
+					}
+
+				if(hm.containsKey(arr[j])){
+					hm.put(arr[j], hm.get(arr[j]+1));
+				}
+				else{
+					hm.put(arr[j], 1);
+				}
+			}
+			if(hm.containsKey(arr[i])){
+					hm.put(arr[i], hm.get(arr[i]+1));
+				}
+				else{
+					hm.put(arr[i], 1);
+				}
+		}
+
+		ans.addAll(set);
+
+		return ans;
+
+	}
+}
+
