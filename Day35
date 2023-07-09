@@ -36,5 +36,13 @@ public class Solution {
 //Can you try solving the problem with less
 //than O(N^2 * log (N)) time complexity?
 
+//Even if we use 3 loops and hashmap the TC=O(N^3 * logM)
+
+//Even if we use 4 pointers fix 2 ponters and move 2 pointers the TC=O(N^3)
+
+//Although the q runs completelty without TLE in Brute only but if anyone gets this 
+//O(N^2 * log (N)) time complexity approch feel free to make a commit or comment on Linkedin
+//https://www.linkedin.com/feed/update/urn:li:activity:7083825643653636096/
+
 
 
