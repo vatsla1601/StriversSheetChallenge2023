@@ -1,1 +1,40 @@
 //4 sum problem
+
+import java.io.*;
+import java.util.* ;
+
+public class Solution {
+  public static String fourSum(int[] arr, int target, int n) {
+      // Write your code here.
+
+      String ans="No";
+      long sum=0;
+      for(int i=0; i<n-3; i++){
+        for(int j=i+1; j<n-2; j++){
+          for(int k=j+1; k<n-1; k++){
+            for(int l=k+1; l<n; l++){
+              sum=(long)arr[i]+arr[j]+arr[k]+arr[l];
+              if(sum==(long)target){
+                ans="Yes";
+                break;
+              }
+              if(ans=="Yes") break;
+            }
+             if(ans=="Yes") break;
+          }
+           if(ans=="Yes") break;
+        }
+         if(ans=="Yes") break;
+      }
+      return ans;
+  }
+}
+//TC = O(N^4)
+
+
+// Follow Up:
+//Can you try solving the problem with less
+//than O(N^2 * log (N)) time complexity?
+
+
+
