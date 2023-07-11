@@ -71,3 +71,72 @@ public class Solution {
 
     }
 }
+
+//my mistake I didint read the test cases properly
+
+//right soln
+
+//but there are errors in this too
+
+import java.util.* ;
+import java.io.*; 
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+    class LinkedListNode {
+        int data;
+        LinkedListNode next;
+        
+        public LinkedListNode(int data) {
+            this.data = data;
+        }
+    }
+
+*****************************************************************/
+
+
+public class Solution {
+    static LinkedListNode addTwoNumbers(LinkedListNode head1, LinkedListNode head2) {
+        // Write your code here.
+        LinkedListNode dummy = new LinkedListNode();
+        LinkedListNode temp=dummy;
+
+        int carry=0;
+
+        while(head1!=null || head2!=null || carry!=0){
+            int sum=0;
+            if(head1!=null){
+                sum+=head1.data;
+                head1=head1.next;
+            }
+
+            if(head2!=null){
+                sum+=head2.data;
+                head2=head2.next;
+            }
+
+            sum+=carry;
+            carry=sum/10;
+            LinkedListNode node = new LinkedListNode(sum%10);
+            temp.next=node;
+            temp=temp.next;
+        }
+        return dummy.next;
+    }
+}
+
+//error: Compilation Failed./Solution.java:22: error: constructor LinkedListNode in class LinkedListNode cannot be applied to given types;
+//LinkedListNode dummy = new LinkedListNode();
+                               ^
+  //required: int
+  //found: no arguments
+  //reason: actual and formal argument lists differ in length
+//1 error
+
+//Honestly I didn't expect Ill have this much of a problem in running this q
+
+//I figured the constructor is only parameterised, so  LinkedListNode dummy = new LinkedListNode(0);
+//I put 0 in it
+
+
