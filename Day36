@@ -1,1 +1,73 @@
 //2 Sum using 2 linkedlists
+
+//but its giving runtime error
+
+import java.util.* ;
+import java.io.*; 
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+    class LinkedListNode {
+        int data;
+        LinkedListNode next;
+        
+        public LinkedListNode(int data) {
+            this.data = data;
+        }
+    }
+
+*****************************************************************/
+
+
+public class Solution {
+    static LinkedListNode addTwoNumbers(LinkedListNode head1, LinkedListNode head2) {
+        // Write your code here.
+        int x=0, y=0;
+
+        while(head1!=null){
+            x=x*10+head1.data;
+            head1=head1.next;
+        }
+
+        while(head2!=null){
+            y=y*10+head2.data;
+            head2=head2.next;
+        }
+
+        int ans=x+y;
+
+        LinkedListNode dummy = new LinkedListNode(0);
+        LinkedListNode temp=dummy;
+
+        if(ans==0){
+            LinkedListNode node = new LinkedListNode(0);
+            temp.next=node;
+        }
+        else{
+        while(ans!=0){
+            LinkedListNode node = new LinkedListNode(ans%10);
+            temp.next=node;
+            temp=temp.next;
+            ans=ans/10;
+        }
+        }
+
+        temp.next=null;
+        
+        LinkedListNode cur=dummy.next;
+        LinkedListNode prev=null;
+        LinkedListNode next=null;
+
+        while(cur!=null){
+            next=cur.next;
+            cur.next=prev;
+            prev=cur;
+            cur=next;
+        }
+
+        return prev;
+
+
+    }
+}
