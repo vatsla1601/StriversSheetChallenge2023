@@ -1,1 +1,31 @@
+//Return Subsets Sum to K
 
+//Again my logic doesn't work
+
+//Its just not my day guys
+
+public class Solution 
+{
+    public static ArrayList<ArrayList<Integer>> findSubsetsThatSumToK(ArrayList<Integer> arr, int n, int k) 
+	{
+        // Write your code here.
+        ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+        ArrayList<Integer> list = new ArrayList<>();
+        recursion(0,0,k,arr,list,n,ans);
+        return ans;
+    }
+
+    public static void recursion(int ind, int sum, int k, ArrayList<Integer> arr, ArrayList<Integer> list, int N,ArrayList<ArrayList<Integer>> ans) {
+
+    if(ind==N){
+        return;
+    }
+    if(sum==k){
+        ans.add(list);
+    }
+
+    recursion(ind+1, sum+num[ind], k, arr, list.add(num[ind]), N, ans);
+
+    recursion(ind+1, sum, k, arr, list, N, ans);
+    }
+}
