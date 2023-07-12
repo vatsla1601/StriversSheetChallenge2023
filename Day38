@@ -29,6 +29,33 @@ public class Solution {
         ans.add(nottake);
         return take + nottake;
     }
-
 }
+
+//right code, had to see strivers code
+
+import java.util.*;
+import java.io.*;
+
+public class Solution {
+    public static ArrayList<Integer> subsetSum(int num[]) {
+        ArrayList<Integer> sumSub = new ArrayList<>();
+        recursion(0, 0, num, num.length, sumSub);
+        Collections.sort(sumSub);
+        return sumSub;
+    
+    }
+
+    public static void recursion(int ind, int sum, int[] num, int N, ArrayList<Integer> sumSub) {
+
+    if(ind==N){
+        sumSub.add(sum);
+        return;
+    }
+
+    recursion(ind+1, sum+num[ind], num, N, sumSub);
+
+    recursion(ind+1, sum, num, N, sumSub);
+    }
+}
+
 
