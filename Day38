@@ -2,3 +2,33 @@
 
 //Today I feel like doing subset, array and linkedlist questions so...
 
+//the code immediately below is wrong, gosh sometimes I think I really enjoy making my life
+//unnecessarily complex with shit code
+
+
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static ArrayList<Integer> subsetSum(int num[]) {
+        Arrays.sort(num);
+        ArrayList<Integer> ans = new ArrayList<>();
+        recursion(num, 0, ans);
+        ans.add(0); // Include subset sum of 0
+        ans.add(Arrays.stream(num).sum()); // Include sum of the entire array
+        return ans;
+    }
+
+    public static int recursion(int[] num, int ind, ArrayList<Integer> ans) {
+        if (ind == num.length) {
+            return 0;
+        }
+
+        int take = num[ind] + recursion(num, ind + 1, ans);
+        int nottake = recursion(num, ind + 1, ans);
+        ans.add(take);
+        ans.add(nottake);
+        return take + nottake;
+    }
+
+}
+
