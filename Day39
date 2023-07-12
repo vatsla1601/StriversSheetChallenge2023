@@ -3,3 +3,41 @@
 //What I've realized is that I really suck at subset or subsequence questions
 
 //And that only chatGPT can save my logics
+
+//the below codes logic is perfect but the order of printing the unique subsets is incorrect
+
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static ArrayList<ArrayList<Integer>> uniqueSubsets(int n, int arr[]) {
+        // Write your code here..
+        Set<ArrayList<Integer>> uniqueSubsets = new HashSet<>();
+        ArrayList<Integer> list = new ArrayList<>();
+        recursion(0, n, arr, list, uniqueSubsets);
+        ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+        ans.addAll(uniqueSubsets);
+          Collections.sort(ans, new ArrayListComparator());
+        return ans;
+    }
+
+    public static void recursion(int ind, int n, int[] arr,  ArrayList<Integer> list, Set<ArrayList<Integer>> uniqueSubsets){
+               if (ind == n) {
+            Collections.sort(list);
+            uniqueSubsets.add(new ArrayList<>(list));
+            return;
+        }
+
+        list.add(arr[ind]);
+        recursion(ind + 1, n, arr, list, uniqueSubsets);
+        list.remove(list.size() - 1);
+        recursion(ind + 1, n, arr, new ArrayList<>(list), uniqueSubsets);
+    }
+
+     static class ArrayListComparator implements Comparator<ArrayList<Integer>> {
+        @Override
+        public int compare(ArrayList<Integer> list1, ArrayList<Integer> list2) {
+            return list1.size() - list2.size();
+        }
+    }
+
+}
