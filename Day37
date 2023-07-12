@@ -27,6 +27,10 @@ public class Solution {
 
 //chatgpt correction
 
+//Acc to me, although chatgpt says otherwise i.e TC=O(N)
+//TC=O(N^2)
+//SC=O(N^2)
+
 import java.io.*;
 import java.util.*;
 
@@ -59,4 +63,15 @@ public class Solution {
         return maxLength;
     }
 }
+
+//For the abover solution chatgpt says:
+//The time complexity of this solution is O(N) because we iterate through the array once to build 
+//the set and then iterate again to find the longest consecutive sequence.
+//The space complexity is also O(N) because we use a set to store the unique elements of the array.
+
+//Follow Up:
+//Can you solve this in (N) time and O(N)
+//space complexity?
+
+
 
