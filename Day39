@@ -41,3 +41,37 @@ public class Solution {
     }
 
 }
+
+
+//The printing order was giving issues but now its fixed
+
+//Had to sort the array initially to handle duplicates correctly
+
+import java.util.*;
+import java.io.*;
+
+public class Solution {
+   public static ArrayList<ArrayList<Integer>> uniqueSubsets(int n, int arr[]) {
+        Arrays.sort(arr); // Sort the array to handle duplicates correctly
+        ArrayList<ArrayList<Integer>> subsets = new ArrayList<>();
+        ArrayList<Integer> currentSubset = new ArrayList<>();
+        recursion(0, n, arr, currentSubset, subsets);
+        return subsets;
+    }
+
+    public static void recursion(int ind, int n, int[] arr, ArrayList<Integer> currentSubset, ArrayList<ArrayList<Integer>> subsets) {
+        subsets.add(new ArrayList<>(currentSubset));
+
+        for (int i = ind; i < n; i++) {
+            if (i > ind && arr[i] == arr[i - 1]) {
+                continue;
+            }
+            currentSubset.add(arr[i]);
+            recursion(i + 1, n, arr, currentSubset, subsets);
+            currentSubset.remove(currentSubset.size() - 1);
+        }
+        }
+}
+
+
+
