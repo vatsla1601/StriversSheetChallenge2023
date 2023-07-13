@@ -1,1 +1,72 @@
+//Remember whenever you finding subarrays, there are 3 loops used in the brute approach
+
+//Count subarrays with given xor
+//Brute 
+//TLE
+
+import java.io.*;
+import java.util.* ;
+
+import java.util.ArrayList;
+
+public class Solution {
+	public static int subarraysXor(ArrayList<Integer> arr, int x) {
+		// Write your code here.
+		 int count = 0;
+        int n = arr.size();
+        
+        for (int i = 0; i < n; i++) {
+            for (int j = i; j < n; j++) {
+                int xor = 0;
+                
+                for (int k = i; k <= j; k++) {
+                    xor = xor ^ arr.get(k);
+                }
+                
+                if (xor == x) {
+                    count++;
+                }
+            }
+        }
+        
+        return count;
+	}
+}
+
+//Better
+
+//Still TLE
+
+import java.io.*;
+import java.util.* ;
+
+import java.util.ArrayList;
+
+public class Solution {
+	public static int subarraysXor(ArrayList<Integer> arr, int x) {
+		// Write your code here.
+		 int count = 0;
+        int n = arr.size();
+        
+        for (int i = 0; i < n; i++) {
+			int xor = 0;
+                
+            for (int j = i; j < n; j++) {
+                xor = xor ^ arr.get(j);
+                
+                if (xor == x) {
+                    count++;
+                }
+            }
+        }
+        
+        return count;
+	}
+}
+
+//Optimal
+
+//I dont know why Im finding strivers solution tricky
+
+
 
