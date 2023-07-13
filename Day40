@@ -29,3 +29,32 @@ public class Solution
     recursion(ind+1, sum, k, arr, list, N, ans);
     }
 }
+
+//Right Code
+//I was making a base condition error
+
+import java.util.ArrayList;
+
+public class Solution {
+    public static ArrayList<ArrayList<Integer>> findSubsetsThatSumToK(ArrayList<Integer> arr, int n, int k) {
+        ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+        ArrayList<Integer> list = new ArrayList<>();
+        recursion(0, 0, k, arr, list, n, ans);
+        return ans;
+    }
+
+    public static void recursion(int ind, int sum, int k, ArrayList<Integer> arr, ArrayList<Integer> list, int N, ArrayList<ArrayList<Integer>> ans) {
+        if (ind == N) {
+            if (sum == k) {
+                ans.add(new ArrayList<>(list));
+            }
+            return;
+        }
+
+        list.add(arr.get(ind));
+        recursion(ind + 1, sum + arr.get(ind), k, arr, list, N, ans);
+        list.remove(list.size() - 1);
+        recursion(ind + 1, sum, k, arr, list, N, ans);
+    }
+}
+
