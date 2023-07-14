@@ -2,3 +2,36 @@
 //for coding that day, but as time passed I really look forward to solving atleast 2 q each day
 //From hating to code Regularly to waking up and looking forward to Code had been such a massive shift of why I feel proud
 //I sincerely feel you dont just find your passion you even have to grow it, only then it statys
+
+//Combination Sum II
+
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class Solution {
+    public static ArrayList<ArrayList<Integer>> combinationSum2(ArrayList<Integer> arr, int n, int target) {
+        Collections.sort(arr);
+        ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+        ArrayList<Integer> list = new ArrayList<>();
+        recursion(0, 0, n, target, arr, list, ans);
+        return ans;
+    }
+
+    public static void recursion(int ind, int sum, int n, int k, ArrayList<Integer> arr, ArrayList<Integer> list, ArrayList<ArrayList<Integer>> ans) {
+        if (sum == k) {
+            ans.add(new ArrayList<>(list));
+            return;
+        }
+        if (sum > k || ind == n) {
+            return;
+        }
+        for (int i = ind; i < n; i++) {
+            if (i > ind && arr.get(i).equals(arr.get(i - 1))) {
+                continue; // Skip duplicates
+            }
+            list.add(arr.get(i));
+            recursion(i + 1, sum + arr.get(i), n, k, arr, list, ans);
+            list.remove(list.size() - 1);
+        }
+    }
+}
