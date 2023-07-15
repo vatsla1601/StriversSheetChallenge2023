@@ -4,4 +4,54 @@
 
 //Well even the brute force via recursion seems tough to me at this point
 
+//Partially accepted
+
+//Brute
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class Solution {
+    public static String kthPermutation(int n, int k) {
+        List<List<Integer>> ans = new ArrayList<>();
+        ArrayList<Integer> list = new ArrayList<>();
+        int count[] = new int[n];
+        int copy[] = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            copy[i] = i + 1;
+        }
+
+        Arrays.fill(count, 0);
+        recursion(n, list, count, ans, copy);
+
+        List<Integer> kthPermutation = ans.get(k - 1);
+        StringBuilder sb = new StringBuilder();
+        for (int num : kthPermutation) {
+            sb.append(num);
+        }
+
+        return sb.toString();
+    }
+
+    public static void recursion(int n, ArrayList<Integer> list, int[] count, List<List<Integer>> ans, int[] copy) {
+        if (list.size() == n) {
+            ans.add(new ArrayList<>(list));
+            return;
+        }
+
+        for (int i = 0; i < count.length; i++) {
+            if (count[i] != 1) {
+                list.add(copy[i]);
+                count[i] = 1;
+                recursion(n, list, count, ans, copy);
+                list.remove(list.size() - 1);
+                count[i] = 0;
+            }
+        }
+    }
+}
+
+
 
