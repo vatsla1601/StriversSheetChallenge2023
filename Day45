@@ -1,1 +1,82 @@
+//Reverse linkedlist in k-pairs
 
+//a very unlucky day cause the answer is not coming right
+
+import java.io.*;
+import java.util.* ;
+
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+        class Node
+        {
+        public:
+	        int data;
+	        Node *next;
+	        Node(int data)
+	        {
+		        this->data = data;
+		        this->next = NULL;
+	        }
+        };
+
+*****************************************************************/
+
+public class Solution {
+	static int count=0, i=0, x=0;
+
+	 public static Node getListAfterReverseOperation(Node head, int n, int[] b) {
+		int size=findsize(head);
+        Node cur=head;
+		Node prev=null;
+		Node next=null;
+		// int count=0, i=0;
+
+		while(count<b[i] && cur!=null && i<n){
+			if(b[i]==0){
+				i++;
+				x++;
+				count=0;
+				continue;
+			}
+			next=cur.next;
+			cur.next=prev;
+			prev=cur;
+			cur=next;
+			count++;
+			x++;
+		}
+
+		count=0;
+		i++;
+
+		if(cur!=null && i<n){
+			head.next=getListAfterReverseOperation(cur, n, b);
+		}
+
+		count=0;
+		while(x<size){
+			next=cur.next;
+			cur.next=prev;
+			prev=cur;
+			cur=next;
+			count++;
+			x++;
+		}
+
+		return prev;
+
+}
+
+public static int findsize(Node curr){
+	int size=0;
+	while(curr!=null){
+		size++;
+		curr=curr.next;
+	}
+	return size;
+}
+
+// public static Node reverse()
+}
