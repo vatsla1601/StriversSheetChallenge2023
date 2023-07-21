@@ -1,1 +1,96 @@
+//this code is incorrect
+
+//Rotate a linkedlist
+
+/****************************************************************
+
+ Following is the class structure of the Node class:
+
+ class Node {
+     public int data;
+     public Node next;
+
+     Node()
+     {
+         this.data = 0;
+         this.next = null;
+     }
+
+     Node(int data)
+     {
+         this.data = data;
+         this.next = null;
+     }
+
+     Node(int data, Node next)
+     {
+         this.data = data;
+         this.next = next;
+     }
+ };
+
+ *****************************************************************/
+
+/****************************************************************
+
+ Following is the class structure of the Node class:
+
+ class Node {
+     public int data;
+     public Node next;
+
+     Node()
+     {
+         this.data = 0;
+         this.next = null;
+     }
+
+     Node(int data)
+     {
+         this.data = data;
+         this.next = null;
+     }
+
+     Node(int data, Node next)
+     {
+         this.data = data;
+         this.next = next;
+     }
+ };
+
+ *****************************************************************/
+
+public class Solution {
+    public static Node rotate(Node head, int k) {
+        if (head == null || k <= 0) {
+            return head; // No rotation needed or an empty list, return as it is.
+        }
+
+        Node cur = head;
+        int count = 1; // Start counting from 1 as the head node is the first node.
+
+        // Traverse to the kth node
+        while (count < k && cur.next != null) {
+            cur = cur.next;
+            count++;
+        }
+
+        if (cur.next == null) {
+            return head; // If k is greater than or equal to the list length, return as it is.
+        }
+
+        // Now, cur points to the kth node.
+        Node newHead = cur.next; // The kth node becomes the new head after rotation.
+        cur.next = null; // Disconnect the new tail from the rest of the list.
+
+        Node temp = newHead;
+        while (temp.next != null) {
+            temp = temp.next;
+        }
+
+        temp.next = head; // Connect the original head to the end of the list.
+
+        return newHead;
+    }
+}
 
