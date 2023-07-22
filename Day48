@@ -1,0 +1,26 @@
+//Search In A 2D Matrix
+//easy
+
+import java.util.ArrayList;
+public class Solution {
+    static boolean searchMatrix(ArrayList<ArrayList<Integer>> mat, int target) {
+        // Write your code here.
+        boolean ans=false;
+        int row=mat.size();
+        int col=mat.get(0).size();
+        for(int i=0; i<row; i++){
+            if(mat.get(i).get(col-1)<=target){
+                for(int j=0;j<col;j++){
+                    if(mat.get(i).get(j)==target){
+                        ans=true;
+                        break;
+                    }
+                }
+                if(ans==true){
+                    break;
+                }
+            }
+        }
+        return ans;
+    }
+}
