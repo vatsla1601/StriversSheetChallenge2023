@@ -1,1 +1,34 @@
+//Merge Intervals
+
+//No doubt I took chatgpts help in this
+
+     if (intervals == null || intervals.length <= 1) {
+            return Arrays.asList(intervals);
+        }
+
+        // Sort the intervals based on their start times
+        Arrays.sort(intervals, Comparator.comparingInt(interval -> interval.start));
+
+        List<Interval> mergedIntervals = new ArrayList<>();
+        Interval currentInterval = intervals[0];
+
+        for (int i = 1; i < intervals.length; i++) {
+            Interval nextInterval = intervals[i];
+
+            if (currentInterval.end >= nextInterval.start) {
+                // There is an overlap, merge the intervals
+                currentInterval.end = Math.max(currentInterval.end, nextInterval.end);
+            } else {
+                // No overlap, add the current merged interval to the result and update currentInterval
+                mergedIntervals.add(currentInterval);
+                currentInterval = nextInterval;
+            }
+        }
+
+        // Add the last merged interval to the result
+        mergedIntervals.add(currentInterval);
+
+        return mergedIntervals;
+    }
+
 
